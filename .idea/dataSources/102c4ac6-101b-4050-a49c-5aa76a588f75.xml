@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="main_event@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.1">
+    <root id="1"/>
+    <schema id="2" parent="1" name="main_event">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="information_schema"/>
+    <schema id="4" parent="1" name="kanban_board"/>
+    <schema id="5" parent="1" name="mysql"/>
+    <schema id="6" parent="1" name="performance_schema"/>
+    <schema id="7" parent="1" name="pricelist_db"/>
+    <schema id="8" parent="1" name="sakila"/>
+    <schema id="9" parent="1" name="sys"/>
+    <schema id="10" parent="1" name="test_app"/>
+    <schema id="11" parent="1" name="world"/>
+    <table id="12" parent="2" name="event"/>
+    <table id="13" parent="2" name="event_location"/>
+    <table id="14" parent="2" name="event_photo"/>
+    <table id="15" parent="2" name="event_type"/>
+    <table id="16" parent="2" name="type"/>
+    <table id="17" parent="2" name="user"/>
+    <table id="18" parent="2" name="user_event"/>
+    <column id="19" parent="12" name="ev_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="20" parent="12" name="ev_name">
+      <Position>2</Position>
+      <DataType>varchar(200)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="21" parent="12" name="ev_creator">
+      <Position>3</Position>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="22" parent="12" name="ev_time">
+      <Position>4</Position>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="23" parent="12" name="ev_description">
+      <Position>5</Position>
+      <DataType>varchar(500)|0</DataType>
+    </column>
+    <column id="24" parent="12" name="ev_max_subscribers">
+      <Position>6</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="25" parent="12" name="ev_location">
+      <Position>7</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="26" parent="12" name="ev_create_time">
+      <Position>8</Position>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="27" parent="12" name="ewr_idx">
+      <ColNames>ev_location</ColNames>
+    </index>
+    <index id="28" parent="12" name="wetf_idx">
+      <ColNames>ev_creator</ColNames>
+    </index>
+    <key id="29" parent="12" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ev_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="30" parent="12" name="wetf">
+      <ColNames>ev_creator</ColNames>
+      <RefSchemaName>main_event</RefSchemaName>
+      <RefTableName>user</RefTableName>
+      <RefColNames>us_username</RefColNames>
+    </foreign-key>
+    <foreign-key id="31" parent="12" name="ewr">
+      <ColNames>ev_location</ColNames>
+      <RefSchemaName>main_event</RefSchemaName>
+      <RefTableName>event_location</RefTableName>
+      <RefColNames>el_id</RefColNames>
+    </foreign-key>
+    <column id="32" parent="13" name="el_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="33" parent="13" name="el_latitude">
+      <Position>2</Position>
+      <DataType>decimal(8,6)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="34" parent="13" name="el_longitude">
+      <Position>3</Position>
+      <DataType>decimal(8,6)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="35" parent="13" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>el_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="36" parent="14" name="ep_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="37" parent="14" name="ep_event_id">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="38" parent="14" name="ep_url">
+      <Position>3</Position>
+      <DataType>varchar(600)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="39" parent="14" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ep_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="40" parent="15" name="et_event_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="41" parent="15" name="et_type_id">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="42" parent="15" name="zxc_idx">
+      <ColNames>et_type_id</ColNames>
+    </index>
+    <key id="43" parent="15" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>et_event_id
+et_type_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="44" parent="15" name="vbbf">
+      <ColNames>et_event_id</ColNames>
+      <RefSchemaName>main_event</RefSchemaName>
+      <RefTableName>event</RefTableName>
+      <RefColNames>ev_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="45" parent="15" name="zxc">
+      <ColNames>et_type_id</ColNames>
+      <RefSchemaName>main_event</RefSchemaName>
+      <RefTableName>type</RefTableName>
+      <RefColNames>et_id</RefColNames>
+    </foreign-key>
+    <column id="46" parent="16" name="et_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="47" parent="16" name="et_name">
+      <Position>2</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="48" parent="16" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>et_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="49" parent="17" name="us_username">
+      <Position>1</Position>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="50" parent="17" name="us_password">
+      <Position>2</Position>
+      <DataType>varchar(200)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="51" parent="17" name="us_first_name">
+      <Position>3</Position>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="52" parent="17" name="us_last_name">
+      <Position>4</Position>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="53" parent="17" name="us_phone">
+      <Position>5</Position>
+      <DataType>varchar(45)|0</DataType>
+    </column>
+    <column id="54" parent="17" name="us_email">
+      <Position>6</Position>
+      <DataType>varchar(45)|0</DataType>
+    </column>
+    <column id="55" parent="17" name="us_photo_url">
+      <Position>7</Position>
+      <DataType>varchar(600)|0</DataType>
+    </column>
+    <key id="56" parent="17" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>us_username</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="57" parent="18" name="ue_username">
+      <Position>1</Position>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="58" parent="18" name="ue_event_id">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="59" parent="18" name="ue_role">
+      <Position>3</Position>
+      <DataType>enum(&apos;ORGANIZER&apos;, &apos;SUBSCRIBER&apos;, &apos;CONSUMER&apos;)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="60" parent="18" name="qwe_idx">
+      <ColNames>ue_event_id</ColNames>
+    </index>
+    <key id="61" parent="18" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ue_username
+ue_event_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="62" parent="18" name="asd">
+      <ColNames>ue_username</ColNames>
+      <RefSchemaName>main_event</RefSchemaName>
+      <RefTableName>user</RefTableName>
+      <RefColNames>us_username</RefColNames>
+    </foreign-key>
+    <foreign-key id="63" parent="18" name="qwe">
+      <ColNames>ue_event_id</ColNames>
+      <RefSchemaName>main_event</RefSchemaName>
+      <RefTableName>event</RefTableName>
+      <RefColNames>ev_id</RefColNames>
+    </foreign-key>
+  </database-model>
+</dataSource>
