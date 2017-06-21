@@ -17,9 +17,12 @@ public class Event {
     private String name;
     private String description;
     private Location location;
+    private EventType eventType;
+
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd MMM yyyy hh:mm:ss", timezone = "GMT+3")
     private Date eventDate;
 
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd/MM/yyyy")
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd MMM yyyy hh:mm:ss", timezone = "GMT+3")
     private Date creationDate;
 
     private User creator;

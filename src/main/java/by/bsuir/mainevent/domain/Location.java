@@ -1,5 +1,6 @@
 package by.bsuir.mainevent.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 /**
@@ -7,6 +8,7 @@ import lombok.Data;
  */
 @Data
 public class Location {
+    @JsonIgnore
     private int id;
     private double latitude;
     private double longitude;

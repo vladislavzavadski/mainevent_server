@@ -1,15 +1,13 @@
 package by.bsuir.mainevent.controller;
 
 import by.bsuir.mainevent.domain.Event;
+import by.bsuir.mainevent.domain.Subscription;
 import by.bsuir.mainevent.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
-import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
 
 /**
@@ -27,16 +25,23 @@ public class EventController {
 
     @RequestMapping(value = "/event", method = RequestMethod.POST)
     public void createEvent(@RequestBody Event event, TimeZone timeZone) throws ParseException {
-
         eventService.createEvent(event, timeZone);
     }
 
-    @RequestMapping(value = "/event", method = RequestMethod.GET)
-    public Event getEvent(){
-        Event event = new Event();
+    @RequestMapping(value = "/event/{id}", method = RequestMethod.GET)
+    public Event getEvent(@PathVariable("id") int eventId, TimeZone timeZone) throws ParseException {
 
-        event.setEventDate(new Date());
-
-        return event;
+        return eventService.getEvent(eventId, timeZone);
     }
+
+    @RequestMapping(value = "/event/subscribe", method = RequestMethod.POST)
+    public void subscribeOnEvent(@RequestBody Subscription subscription){
+        eventService.subscribeOnEvent(subscription);
+    }
+
+    @RequestMapping(value = "/event", method = RequestMethod.GET)
+    public List<Event> getEvents(@RequestParam(value = "startFrom") int startFrom, @RequestParam(value = "limit") int limit){
+        return eventService.getUsersEvents(startFrom, limit);
+    }
+
 }
